@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>d3 sparql</title>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="lib/d3/d3.v3.min.js"></script>
+    <script src="d3sparql.js"></script>
+    <script>
+      function exec () {
+        let endpoint = d3.select('#endpoint').property('value')
+        let sparql = d3.select('#sparql').property('value')
+        d3sparql.query(endpoint, sparql, render)
+      }
+
+      function render (json) {
+        let config = {
+          'label': 'pref',
+          'size': 'area',
+          'width': 600,  // canvas width
+          'height': 600,  // canvas height
+          'margin': 10,  // canvas margin
+          'hole': 200,  // doughnut hole: 0 for pie, r > 0 for doughnut
+          'selector': '#result'
+        }
+        d3sparql.piechart(json, config)
+      }
+
+      function exec_offline () {
+        d3.json('cache/dbpedia/area-ja.json', render)
+      }
+
+      function toggle () {
+        d3sparql.toggle()
+      }
+    </script>
+    <style>
+        .label {
+            font: 10px sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="query" style="margin: 10px">
+    <h1>d3piechart</h1>
+    <form class="form-inline">
+        <label>SPARQL endpoint:</label>
+        <div class="input-append">
+            <input class="span5" id="endpoint" type="text" size="50" value="http://dbpedia.org/sparql">
+            <button class="btn" onclick="exec()" type="button">Query</button>
+            <button class="btn" onclick="exec_offline()" type="button">Use cache</button>
+            <button class="btn" onclick="toggle()" type="button"><i class="icon-chevron-up" id="button"></i></button>
+        </div>
+    </form>
+    <textarea class="span9" id="sparql" rows=15 cols="100">
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX yago: <http://dbpedia.org/class/yago/>
+PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+
+SELECT ?pref ?area
+WHERE {
+  ?s a yago:WikicatPrefecturesOfJapan ;
+     rdfs:label ?pref ;
+     dbpedia-owl:areaTotal ?area_total .
+  FILTER (lang(?pref) = 'en')
+  BIND ((?area_total / 1000 / 1000) AS ?area)
+}
+ORDER BY DESC(?area)
+      </textarea>
+</div>
+<div id="result"></div>
+</body>
+</html>

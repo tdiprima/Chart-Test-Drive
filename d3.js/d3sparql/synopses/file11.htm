@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>round tree</title>
+    <!-- CSS/SVG: -->
+    <style>
+        .link {
+            fill: none;
+            stroke: #cccccc;
+            stroke-width: 1.5px;
+        }
+
+        .node circle {
+            fill: #ffffff;
+            stroke: darkgreen;
+            stroke-width: 1.5px;
+            opacity: 1;
+        }
+
+        .node text {
+            font-size: 10px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+<script>
+  // Rendering sparql-results+json object into a round tree
+
+  // References:
+  //   http://bl.ocks.org/4063550  Reingold-Tilford Tree
+
+  // Options:
+  config = {
+    diameter: 800, // canvas diameter (optional)
+    angle: 360, // arc angle (optional; less than 360 for wedge)
+    depth: 200, // arc depth (optional; less than diameter/2 - label length to fit)
+    radius: 5, // node radius (optional)
+    selector: '#result'
+    // options for d3sparql.tree() can be added here ...
+  }
+
+  // Synopsis:
+  d3sparql.query(endpoint, sparql, render)
+
+  function render (json) {
+    let config = {
+      // ...
+    }
+    d3sparql.roundtree(json, config)
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+  Rendering sparql-results+json object into a treemap
+
+  References:
+    http://bl.ocks.org/4063582  Treemap
+
+  Options:
+    config = {
+      "width":    800,       // canvas width (optional)
+      "height":   500,       // canvas height (optional)
+      "margin":   {"top": 10, "right": 10, "bottom": 10, "left": 10},
+      "selector": "#result"
+      // options for d3sparql.tree() can be added here ...
+    }
+
+  Synopsis:
+    d3sparql.query(endpoint, sparql, render)
+
+    function render(json) {
+      var config = { ... }
+      d3sparql.treemap(json, config)
+    }
+
+  CSS/SVG:
+    <style>
+    .node {
+      border: solid 1px white;
+      font: 10px sans-serif;
+      line-height: 12px;
+      overflow: hidden;
+      position: absolute;
+      text-indent: 2px;
+    }
+    </style>
+*/
+</script>
+</body>
+</html>

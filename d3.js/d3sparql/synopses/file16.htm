@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+  Rendering sparql-results+json object into a zoomable treemap
+
+  References:
+    http://bost.ocks.org/mike/treemap/  Zoomable Treemaps
+    http://bl.ocks.org/zanarmstrong/76d263bd36f312cb0f9f
+
+  Options:
+    config = {
+      "width":    800,       // canvas width (optional)
+      "height":   500,       // canvas height (optional)
+      "margin":   {"top": 10, "right": 10, "bottom": 10, "left": 10},
+      "selector": "#result"
+      // options for d3sparql.tree() can be added here ...
+    }
+
+  Synopsis:
+    d3sparql.query(endpoint, sparql, render)
+
+    function render(json) {
+      var config = { ... }
+      d3sparql.treemapzoom(json, config)
+    }
+
+  CSS/SVG:
+    <style>
+    rect {
+      cursor: pointer;
+    }
+    .grandparent:hover rect {
+      opacity: 0.8;
+    }
+    .children:hover rect.child {
+      opacity: 0.2;
+    }
+    </style>
+*/
+</script>
+</body>
+</html>

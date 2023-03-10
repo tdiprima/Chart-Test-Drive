@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>pie chart</title>
+    <!-- CSS/SVG: -->
+    <style>
+        .label {
+            font: 10px sans-serif;
+        }
+
+        .arc path {
+            stroke: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+  // Rendering sparql-results+json object into a pie chart
+
+  // References:
+  //   http://bl.ocks.org/mbostock/3887235 Pie chart
+  //   http://bl.ocks.org/mbostock/3887193 Donut chart
+
+  // Options:
+  config = {
+    label: 'pref', // SPARQL variable name for slice label (optional; default is the 1st variable)
+    size: 'area', // SPARQL variable name for slice value (optional; default is the 2nd variable)
+    width: 700, // canvas width (optional)
+    height: 600, // canvas height (optional)
+    margin: 10, // canvas margin (optional)
+    hole: 50, // radius size of a center hole (optional; 0 for pie, r > 0 for doughnut)
+    selector: '#result'
+  }
+
+  // Synopsis:
+  d3sparql.query(endpoint, sparql, render)
+
+  function render (json) {
+    let config = {
+      // ...
+    }
+    d3sparql.piechart(json, config)
+  }
+</script>
+</body>
+
+</html>

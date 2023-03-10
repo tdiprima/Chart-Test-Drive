@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>d3 sparql</title>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="lib/d3/d3.v3.min.js"></script>
+    <script src="lib/d3/topojson.v1.min.js"></script>
+    <script src="d3sparql.js"></script>
+    <script>
+      function exec () {
+        let endpoint = d3.select('#endpoint').property('value')
+        let sparql = d3.select('#sparql').property('value')
+        d3sparql.query(endpoint, sparql, render)
+      }
+
+      function render (json) {
+        let config = {
+          'var_lat': 'lat',
+          'var_lng': 'lng',
+          'width': 960,
+          'height': 480,
+          'radius': 5,
+          'color': '#55C25E',
+          'topojson': 'lib/d3/map/world-50m.json',
+          'selector': '#result'
+        }
+        d3sparql.coordmap(json, config)
+      }
+
+      function exec_offline () {
+        d3.json('cache/ebi/biosamples.json', render)
+      }
+
+      function toggle () {
+        d3sparql.toggle()
+      }
+    </script>
+</head>
+<body>
+<div id="query" style="margin: 10px">
+    <h1>d3coordmap</h1>
+    <form class="form-inline">
+        <label>SPARQL endpoint:</label>
+        <div class="input-append">
+            <input class="span5" id="endpoint" type="text" size="50" value="http://www.ebi.ac.uk/rdf/services/sparql">
+            <button class="btn" onclick="exec()" type="button">Query</button>
+            <button class="btn" onclick="exec_offline()" type="button">Use cache</button>
+            <button class="btn" onclick="toggle()" type="button"><i class="icon-chevron-up" id="button"></i></button>
+        </div>
+    </form>
+    <textarea class="span9" id="sparql" rows=15 cols="100">
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX biosd-terms: <http://rdf.ebi.ac.uk/terms/biosd/>
+PREFIX sio: <http://semanticscience.org/resource/>
+
+# Samples reporting latitude and longitude
+SELECT DISTINCT ?item ?lat ?lng
+WHERE {
+  ?item biosd-terms:has-sample-attribute ?lat_value, ?lng_value .
+
+  ?lat_value
+    dc:type ?lat_label;
+    sio:SIO_000300 ?lat . # sio:has value
+
+  FILTER ( LCASE ( STR ( ?lat_label ) ) = "latitude" ) .
+
+  ?lng_value
+    dc:type ?lng_label;
+    sio:SIO_000300 ?lng . # sio:has value
+
+  FILTER ( LCASE ( STR ( ?lng_label ) ) = "longitude" ) .
+} LIMIT 1000
+      </textarea>
+</div>
+<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>Execute SPARQL query</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="d3sparql.js"></script>
+
+    <style>
+        /* TODO: customize CSS */
+    </style>
+
+</head>
+<body>
+
+<form style="display:none">
+    <input id="endpoint" type="text" value="http://dbpedia.org/sparql">
+    <!-- TODO: set the query -->
+    <textarea id="sparql">
+        PREFIX ...
+        SELECT ...
+        WHERE { ... }
+       </textarea>
+</form>
+<div id="result"></div>
+
+<script>
+  $(window).on('load', function () {
+    // Execute a SPARQL query and pass the result to a given callback function
+    function exec () {
+      let endpoint = d3.select('#endpoint').property('value')
+      let sparql = d3.select('#sparql').property('value')
+      // Callback, because you're getting data.
+      d3sparql.query(endpoint, sparql, render)
+    }
+
+    function render (json) {
+      // set options and call the d3sparql.xxxxx visualization methods in this library ...
+      let config = {
+        margin: { 'top': 10, 'right': 10, 'bottom': 10, 'left': 10 },
+        selector: '#result' // always
+      }
+      d3sparql.xxxxx(json, config) // TODO: choose a visualization method.
+    }
+  })
+</script>
+
+</body>
+</html>

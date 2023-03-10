@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>bar chart</title>
+    <!-- CSS/SVG: -->
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: brown;
+        }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000000;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+  // Rendering sparql - results + json object into a bar chart
+
+  // References:
+  // http://bl.ocks.org/mbostock/3885304
+  // http://bl.ocks.org/mbostock/4403522
+
+  // Options:
+  config = {
+    label_x: 'Prefecture', // label for x-axis (optional; default is same as var_x)
+    label_y: 'Area', // label for y-axis (optional; default is same as var_y)
+    var_x: 'pref', // SPARQL variable name for x-axis (optional; default is the 1st variable)
+    var_y: 'area', // SPARQL variable name for y-axis (optional; default is the 2nd variable)
+    width: 850, // canvas width (optional)
+    height: 300, // canvas height (optional)
+    margin: 40, // canvas margin (optional)
+    selector: '#result'
+  }
+
+  // Synopsis:
+  d3sparql.query(endpoint, sparql, render)
+
+  function render (json) {
+    let config = {
+      // ...
+    }
+    d3sparql.barchart(json, config)
+  }
+</script>
+</body>
+
+</html>

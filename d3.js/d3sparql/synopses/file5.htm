@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>one row into HTML table</title>
+    <!-- CSS: -->
+    <style>
+        table {
+            margin: 10px;
+        }
+
+        th {
+            background: #eeeeee;
+        }
+
+        th:first-letter {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Rendering sparql-results+json object containing one row into a HTML table -->
+<script>
+  // Options:
+  config = {
+    selector: '#result'
+  }
+
+  // Synopsis:
+  d3sparql.query(endpoint, sparql, render)
+
+  function render (json) {
+    let config = {
+      // ...
+    }
+    d3sparql.htmlhash(json, config)
+  }
+</script>
+
+</body>
+
+</html>

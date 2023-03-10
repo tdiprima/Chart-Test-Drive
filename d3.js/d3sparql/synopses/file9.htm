@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <!-- CSS/SVG: -->
+    <style>
+        .link {
+            stroke: #999999;
+        }
+
+        .node {
+            stroke: black;
+            opacity: 0.5;
+        }
+
+        circle.node {
+            stroke-width: 1px;
+            fill: lightblue;
+        }
+
+        text.node {
+            font-family: "sans-serif";
+            font-size: 8px;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+  // Rendering sparql-results+json object into a force graph
+
+  // References:
+  //   http://bl.ocks.org/mbostock/4062045
+
+  // Options:
+  config = {
+    radius: 12, // static value or a function to calculate radius of nodes (optional)
+    charge: -250, // force between nodes (optional; negative: repulsion, positive: attraction)
+    distance: 30, // target distance between linked nodes (optional)
+    width: 1000, // canvas width (optional)
+    height: 500, // canvas height (optional)
+    label: 'name', // SPARQL variable name for node labels (optional)
+    selector: '#result'
+    // options for d3sparql.graph() can be added here ...
+  }
+
+  // Synopsis:
+  d3sparql.query(endpoint, sparql, render)
+
+  function render (json) {
+    let config = {
+      // ...
+    }
+    d3sparql.forcegraph(json, config)
+  }
+
+  // TODO:
+  //   Try other d3.layout.force options.
+
+</script>
+</body>
+
+</html>

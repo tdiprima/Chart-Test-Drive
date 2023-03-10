@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>d3 sparql</title>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="lib/d3/d3.v3.min.js"></script>
+    <script src="d3sparql.js"></script>
+    <script>
+      function exec () {
+        let endpoint = d3.select('#endpoint').property('value')
+        let sparql = d3.select('#sparql').property('value')
+        d3sparql.query(endpoint, sparql, render)
+      }
+
+      function render (json) {
+        let config = {
+          'selector': '#result'
+        }
+        d3sparql.htmlhash(json, config)
+      }
+
+      function exec_offline () {
+        d3.json('cache/gene/slr1311.json', render)
+      }
+
+      function toggle () {
+        d3sparql.toggle()
+      }
+    </script>
+</head>
+<body>
+<div id="query" style="margin: 10px">
+    <h1>d3htmlhash</h1>
+    <form class="form-inline">
+        <label>SPARQL endpoint:</label>
+        <div class="input-append">
+            <input class="span5" id="endpoint" type="text" size="50" value="http://dbpedia.org/sparql">
+            <button class="btn" onclick="exec()" type="button">Query</button>
+            <button class="btn" onclick="exec_offline()" type="button">Use cache</button>
+            <button class="btn" onclick="toggle()" type="button"><i class="icon-chevron-up" id="button"></i></button>
+        </div>
+    </form>
+    <textarea class="span9" id="sparql" rows=15 cols="100">
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbr: <http://dbpedia.org/resource/>
+
+SELECT ?language ?description ?developer ?paradigm ?version
+WHERE {
+  VALUES ?language { "SPARQL"@en }
+  ?s rdf:type dbo:ProgrammingLanguage ;
+     rdfs:label ?language ;
+     rdfs:comment ?description ;
+     dbo:developer/rdfs:label ?developer ;
+     dbp:paradigm/rdfs:label ?paradigm ;
+     dbo:latestReleaseVersion ?version .
+  FILTER (lang(?description) = 'en')
+  FILTER (lang(?developer) = 'en')
+  FILTER (lang(?paradigm) = 'en')
+}
+LIMIT 1
+      </textarea>
+</div>
+<div id="result"></div>
+</body>
+</html>

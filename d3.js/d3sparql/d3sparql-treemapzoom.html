@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="en">
+<head>
+    <title>d3 sparql</title>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="lib/d3/d3.v3.min.js"></script>
+    <script src="d3sparql.js"></script>
+    <script>
+      function exec () {
+        d3sparql.debug = true
+        let endpoint = d3.select('#endpoint').property('value')
+        let sparql = d3.select('#sparql').property('value')
+        d3sparql.query(endpoint, sparql, render)
+      }
+
+      function render (json) {
+        let config = {
+          'width': 1000,
+          'height': 600,
+          'selector': '#result'
+        }
+        d3sparql.treemapzoom(json, config)
+      }
+
+      function exec_offline () {
+        //d3.json("cache/taxonomy/tardigrada.json", render)
+        d3.json('cache/uniprot/ec1.json', render)
+      }
+
+      function toggle () {
+        d3sparql.toggle()
+      }
+    </script>
+    <style>
+        text {
+            pointer-events: none;
+        }
+
+        .children rect.parent,
+        .grandparent rect {
+            cursor: pointer;
+        }
+
+        .grandparent:hover rect {
+            opacity: 0.8;
+        }
+
+        .children:hover rect.child {
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+<div id="query" style="margin: 10px">
+    <h1>d3treemapzoom</h1>
+    <form class="form-inline">
+        <label>SPARQL endpoint:</label>
+        <div class="input-append">
+            <input class="span5" id="endpoint" type="text" size="50" value="http://togostanza.org/sparql">
+            <button class="btn" onclick="exec()" type="button">Query</button>
+            <button class="btn" onclick="exec_offline()" type="button">Use cache</button>
+            <button class="btn" onclick="toggle()" type="button"><i class="icon-chevron-up" id="button"></i></button>
+        </div>
+    </form>
+    <textarea class="span9" id="sparql" rows=15 cols="100">
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX ec: <http://purl.uniprot.org/enzyme/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX taxon:<http://purl.uniprot.org/taxonomy/>
+
+SELECT (REPLACE(STR(?root), ".*/", "") AS ?root_label)
+        (REPLACE(STR(?parent), ".*/", "") AS ?parent_label)
+        (REPLACE(STR(?enzyme), ".*/", "") AS ?enzyme_label)
+        (COUNT(?protein) AS ?value)
+FROM <http://togogenome.org/graph/uniprot>
+WHERE
+{
+        VALUES ?root { ec:1.-.-.- }
+        ?root a up:Enzyme .
+        ?root skos:narrowerTransitive* ?enzyme .
+        ?parent skos:narrowerTransitive ?enzyme .
+        ?protein up:enzyme ?enzyme .
+        # Homo sapiens (9606)
+        ?protein up:organism taxon:9606
+}
+GROUP BY ?root ?parent ?enzyme ORDER BY ?enzyme
+      </textarea>
+</div>
+<div id="result"></div>
+</body>
+</html>
