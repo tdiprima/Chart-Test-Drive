@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploring Data</title>
+  <!-- https://vega.github.io/vega-lite/tutorials/explore.html -->
+  <script src="//cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="//cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="//cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  <style media="screen">
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+<div><a href="https://vega.github.io/vega-lite/tutorials/explore.html">tutorial</a></div>
+<div id="example1"></div>
+<div id="example2"></div>
+<div id="example3"></div>
+<script>
+  let vlSpec = {
+    "data": {"url": "../data/seattle-weather.csv"},
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "timeUnit": "month", // discretize the date by month
+        "field": "date",
+        "type": "ordinal",
+        "title": "Month of the year"
+      },
+      "y": {
+        "aggregate": "count", // count the number of records
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "weather", // break down the bars by the weather type by adding a color
+        "type": "nominal",
+        "scale": {
+          "domain": ["sun", "fog", "drizzle", "rain", "snow"],
+          "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4", "#9467bd"]
+        },
+        "title": "Weather type"
+      }
+    }
+  }
+  vegaEmbed('#example1', vlSpec)
+
+  vlSpec = {
+    "data": {"url": "../data/seattle-weather.csv"},
+    "mark": "bar",
+    "encoding": {
+      "x": {"bin": true, "field": "precipitation"},
+      "y": {"aggregate": "count"} // aggregate and binned fields are quantitative by default
+    }
+  }
+  vegaEmbed('#example2', vlSpec)
+
+  vlSpec = {
+    "data": {"url": "../data/seattle-weather.csv"},
+    "mark": "line",
+    "encoding": {
+      "x": {"timeUnit": "month", "field": "date"},
+      "y": {"aggregate": "mean", "field": "precipitation"}
+    }
+  }
+  vegaEmbed('#example3', vlSpec)
+
+</script>
+</body>
+</html>

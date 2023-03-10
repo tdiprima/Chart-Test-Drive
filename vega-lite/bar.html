@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Vega-Lite Bar Chart</title>
+  <!-- https://vega.github.io/vega-lite/tutorials/getting_started.html -->
+  <!-- https://bl.ocks.org/domoritz/455e1c7872c4b38a58b90df0c3d7b1b9 -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+<div id="vis"></div>
+<script>
+  const spec = "../data/bar.vl.json"
+  vegaEmbed("#vis", spec)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn)
+</script>
+</body>
+</html>
