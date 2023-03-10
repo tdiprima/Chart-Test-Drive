@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Thunderation...</title>
+  <!-- TODO: that's not what I meant. -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div id="chart"></div>
+
+<script>
+  // Define the data for the chart
+  const N = 30;  // Number of nodes
+
+  const x = [];
+  const y = [];
+  const z = [];
+
+  const labels = [];
+  const nodeSize = [];
+
+  for (let i = 0; i < N; i++) {
+    x.push(Math.random());
+    y.push(Math.random());
+    z.push(Math.random() * 30);
+    labels.push(i.toString());
+    nodeSize.push(z[i] * 10);
+  }
+
+  // Create the graph
+  const nodes = [];
+  const edges = [];
+
+  for (let i = 0; i < N; i++) {
+    nodes.push({
+      id: i,
+      x: x[i],
+      y: y[i],
+      size: nodeSize[i],
+      label: labels[i]
+    });
+
+    for (let j = i + 1; j < N; j++) {
+      const distance = Math.sqrt(Math.pow(x[i] - x[j], 2) + Math.pow(y[i] - y[j], 2));
+
+      if (distance < 0.2) {
+        edges.push({
+          id: `${i}-${j}`,
+          source: i,
+          target: j,
+          distance: distance
+        });
+      }
+    }
+  }
+
+  // Define the spring-like forces
+  const layout = {
+    type: 'd3-force',
+    iterations: 100,
+    linkDistance: (edge) => edge.distance * 100,
+    linkStrength: 1,
+    charge: -10
+  };
+
+  // Create the trace
+  const trace = {
+    x: x,
+    y: y,
+    text: labels,
+    mode: 'markers',
+    marker: {
+      size: nodeSize
+    }
+  };
+
+  // Define the data and layout for the chart
+  const data = [trace];
+
+  const chartLayout = {
+    title: 'Bubble Chart with Spring-Like Forces',
+    xaxis: {
+      range: [0, 1],
+      autorange: false
+    },
+    yaxis: {
+      range: [0, 1],
+      autorange: false
+    },
+    hovermode: 'closest',
+    showlegend: false,
+    updatemenus: [{
+      type: 'buttons',
+      showactive: false,
+      buttons: [{
+        label: 'Reset', // Play
+        method: 'animate',
+        args: [null, {
+          frame: {
+            duration: 50,
+            redraw: true
+          },
+          transition: {
+            duration: 0
+          },
+          fromcurrent: true
+        }]
+      }]
+    }],
+    sliders: []
+  };
+
+  // Create the frames for the animation
+  const frames = [];
+  for (let i = 0; i < 100; i++) {
+    frames.push({
+      data: [trace],
+      layout: chartLayout
+    });
+  }
+
+  // Create the chart
+  Plotly.newPlot('chart', data, chartLayout).then(function (chart) {
+    // Add the spring-like forces to the chart
+    chart.layout = layout;
+    Plotly.addFrames('chart', frames);
+  });
+</script>
+</body>
+</html>
