@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>dc.js - Dimensional Charting Javascript Library</title>
+  <meta charset="UTF-8">
+  <link href="graphish_files/dc.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<script src="graphish_files/d3.js" type="text/javascript"></script>
+<script src="graphish_files/crossfilter.js" type="text/javascript"></script>
+<script src="graphish_files/dc.js" type="text/javascript"></script>
+
+<div class="container">
+
+  <h2>Shanghai SSE Composite Index 1990/12/19-2013/05/22</h2>
+
+  <div class="row">
+    <div class="dc-chart" id="yearly-bubble-chart">
+      <strong>Yearly Performance</strong> (x: index gain, y: index gain(%), radius: fluctuation/index ratio, color:
+      gain/loss)
+      <a class="reset" href="javascript:yearlyBubbleChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+      <div class="clearfix"></div>
+      <svg height="250" width="990">
+        <g>
+          <g class="grid-line horizontal" transform="translate(40,10)">
+            <line opacity="0" x1="1" x2="900" y1="166" y2="166"></line>
+            <line opacity="0" x1="1" x2="900" y1="109" y2="109"></line>
+            <line opacity="0" x1="1" x2="900" y1="53" y2="53"></line>
+          </g>
+          <g class="grid-line vertical" transform="translate(40,10)">
+            <line opacity="0" x1="1.7933924328034765" x2="1.7933924328034765" y1="210" y2="0"></line>
+            <line opacity="0" x1="80.62382903955599" x2="80.62382903955599" y1="210" y2="0"></line>
+            <line opacity="0" x1="159.45426564630853" x2="159.45426564630853" y1="210" y2="0"></line>
+            <line opacity="0" x1="238.28470225306106" x2="238.28470225306106" y1="210" y2="0"></line>
+            <line opacity="0" x1="317.11513885981356" x2="317.11513885981356" y1="210" y2="0"></line>
+            <line opacity="0" x1="395.9455754665661" x2="395.9455754665661" y1="210" y2="0"></line>
+            <line opacity="0" x1="474.7760120733186" x2="474.7760120733186" y1="210" y2="0"></line>
+            <line opacity="0" x1="553.6064486800711" x2="553.6064486800711" y1="210" y2="0"></line>
+            <line opacity="0" x1="632.4368852868237" x2="632.4368852868237" y1="210" y2="0"></line>
+            <line opacity="0" x1="711.2673218935762" x2="711.2673218935762" y1="210" y2="0"></line>
+            <line opacity="0" x1="790.0977585003287" x2="790.0977585003287" y1="210" y2="0"></line>
+            <line opacity="0" x1="868.9281951070811" x2="868.9281951070811" y1="210" y2="0"></line>
+          </g>
+          <g class="chartBody" clip-path="url(#yearly-bubble-chart-clip)">
+            <g class="node" transform="translate(436.94514540273974,116)">
+              <circle class="bubble _0" fill="#67e667" opacity="1" r="10.353316059214663"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1990</text>
+              <title>1990
+                Index Gain: 6.34
+                Index Gain in Percentage: 5.44%
+                Fluctuation / Index Ratio: 5.44%</title></g>
+            <g class="node" transform="translate(438.5438266571246,114)">
+              <circle class="bubble _1" fill="#67e667" opacity="1" r="11.953462344252305"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1991</text>
+              <title>1991
+                Index Gain: 16.48
+                Index Gain in Percentage: 10.14%
+                Fluctuation / Index Ratio: 30.05%</title></g>
+            <g class="node" transform="translate(456.00476836552025,109)">
+              <circle class="bubble _2" fill="#67e667" opacity="1" r="35.760777092066746"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1992</text>
+              <title>1992
+                Index Gain: 127.23
+                Index Gain in Percentage: 19.04%
+                Fluctuation / Index Ratio: 396.32%</title></g>
+            <g class="node" transform="translate(310.81014039700716,164)">
+              <circle class="bubble _3" fill="#ff7373" opacity="1" r="52.09228595575029"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1993</text>
+              <title>1993
+                Index Gain: -793.70
+                Index Gain in Percentage: -78.21%
+                Fluctuation / Index Ratio: 647.57%</title></g>
+            <g class="node" transform="translate(364.2776723299029,157)">
+              <circle class="bubble _4" fill="#ff7373" opacity="1" r="49.9941179145386"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1994</text>
+              <title>1994
+                Index Gain: -454.57
+                Index Gain in Percentage: -67.34%
+                Fluctuation / Index Ratio: 615.29%</title></g>
+            <g class="node" transform="translate(409.13692058534167,134)">
+              <circle class="bubble _5" fill="#ff7373" opacity="1" r="34.15021353275928"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1995</text>
+              <title>1995
+                Index Gain: -170.04
+                Index Gain in Percentage: -25.84%
+                Fluctuation / Index Ratio: 371.54%</title></g>
+            <g class="node" transform="translate(461.4405999521753,107)">
+              <circle class="bubble _6" fill="#67e667" opacity="1" r="38.624242685851456"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1996</text>
+              <title>1996
+                Index Gain: 161.71
+                Index Gain in Percentage: 21.16%
+                Fluctuation / Index Ratio: 440.37%</title></g>
+            <g class="node" transform="translate(468.58531774359216,109)">
+              <circle class="bubble _7" fill="#67e667" opacity="1" r="32.189763807215584"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1997</text>
+              <title>1997
+                Index Gain: 207.03
+                Index Gain in Percentage: 17.62%
+                Fluctuation / Index Ratio: 341.38%</title></g>
+            <g class="node" transform="translate(396.77378555143144,130)">
+              <circle class="bubble _8" fill="#ff7373" opacity="1" r="24.43553589876636"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1998</text>
+              <title>1998
+                Index Gain: -248.46
+                Index Gain in Percentage: -19.69%
+                Fluctuation / Index Ratio: 222.09%</title></g>
+            <g class="node" transform="translate(408.4933489008843,126)">
+              <circle class="bubble _9" fill="#ff7373" opacity="1" r="28.759199982851694"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">1999</text>
+              <title>1999
+                Index Gain: -174.12
+                Index Gain in Percentage: -12.64%
+                Fluctuation / Index Ratio: 288.60%</title></g>
+            <g class="node" transform="translate(465.5178677943498,114)">
+              <circle class="bubble _10" fill="#67e667" opacity="1" r="23.336132078434332"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2000</text>
+              <title>2000
+                Index Gain: 187.57
+                Index Gain in Percentage: 9.97%
+                Fluctuation / Index Ratio: 205.17%</title></g>
+            <g class="node" transform="translate(339.8391333556976,137)">
+              <circle class="bubble _11" fill="#ff7373" opacity="1" r="23.21083492643453"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2001</text>
+              <title>2001
+                Index Gain: -609.58
+                Index Gain in Percentage: -31.14%
+                Fluctuation / Index Ratio: 203.24%</title></g>
+            <g class="node" transform="translate(376.7623638970614,133)">
+              <circle class="bubble _12" fill="#ff7373" opacity="1" r="24.667485931763466"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2002</text>
+              <title>2002
+                Index Gain: -375.38
+                Index Gain in Percentage: -23.94%
+                Fluctuation / Index Ratio: 225.65%</title></g>
+            <g class="node" transform="translate(463.7298358312352,113)">
+              <circle class="bubble _13" fill="#67e667" opacity="1" r="22.77438330661317"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2003</text>
+              <title>2003
+                Index Gain: 176.23
+                Index Gain in Percentage: 12.01%
+                Fluctuation / Index Ratio: 196.53%</title></g>
+            <g class="node" transform="translate(393.57123599993304,130)">
+              <circle class="bubble _14" fill="#ff7373" opacity="1" r="25.311355071619705"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2004</text>
+              <title>2004
+                Index Gain: -268.77
+                Index Gain in Percentage: -18.12%
+                Fluctuation / Index Ratio: 235.56%</title></g>
+            <g class="node" transform="translate(437.13449611146893,119)">
+              <circle class="bubble _15" fill="#67e667" opacity="1" r="25.192210054071538"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2005</text>
+              <title>2005
+                Index Gain: 7.54
+                Index Gain in Percentage: 0.65%
+                Fluctuation / Index Ratio: 233.73%</title></g>
+            <g class="node" transform="translate(676.167929851421,66)">
+              <circle class="bubble _16" fill="#67e667" opacity="1" r="26.165885672004688"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2006</text>
+              <title>2006
+                Index Gain: 1523.66
+                Index Gain in Percentage: 93.66%
+                Fluctuation / Index Ratio: 248.71%</title></g>
+            <g class="node" transform="translate(861.1695633932475,83)">
+              <circle class="bubble _17" fill="#67e667" opacity="1" r="34.14037654223247"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2007</text>
+              <title>2007
+                Index Gain: 2697.08
+                Index Gain in Percentage: 63.73%
+                Fluctuation / Index Ratio: 371.39%</title></g>
+            <g class="node" transform="translate(118.83043660675249,157)">
+              <circle class="bubble _18" fill="#ff7373" opacity="1" r="40.29745897377316"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2008</text>
+              <title>2008
+                Index Gain: -2011.37
+                Index Gain in Percentage: -66.25%
+                Fluctuation / Index Ratio: 466.11%</title></g>
+            <g class="node" transform="translate(689.6597590766673,86)">
+              <circle class="bubble _19" fill="#67e667" opacity="1" r="31.466985929548294"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2009</text>
+              <title>2009
+                Index Gain: 1609.24
+                Index Gain in Percentage: 58.26%
+                Fluctuation / Index Ratio: 330.26%</title></g>
+            <g class="node" transform="translate(469.68610596036837,115)">
+              <circle class="bubble _20" fill="#67e667" opacity="1" r="25.55267952458845"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2010</text>
+              <title>2010
+                Index Gain: 214.01
+                Index Gain in Percentage: 7.56%
+                Fluctuation / Index Ratio: 239.27%</title></g>
+            <g class="node" transform="translate(470.0857762739649,115)">
+              <circle class="bubble _21" fill="#67e667" opacity="1" r="22.827868642354616"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2011</text>
+              <title>2011
+                Index Gain: 216.54
+                Index Gain in Percentage: 8.12%
+                Fluctuation / Index Ratio: 197.35%</title></g>
+            <g class="node" transform="translate(521.9312931432405,105)">
+              <circle class="bubble _22" fill="#67e667" opacity="1" r="22.180463951732314"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2012</text>
+              <title>2012
+                Index Gain: 545.38
+                Index Gain in Percentage: 24.59%
+                Fluctuation / Index Ratio: 187.39%</title></g>
+            <g class="node" transform="translate(465.44455548830575,115)">
+              <circle class="bubble _23" fill="#67e667" opacity="1" r="14.60712933502003"></circle>
+              <text dy=".3em" opacity="1" text-anchor="middle">2013</text>
+              <title>2013
+                Index Gain: 187.10
+                Index Gain in Percentage: 8.18%
+                Fluctuation / Index Ratio: 70.88%</title></g>
+          </g>
+          <g class="axis x" transform="translate(40,220)">
+            <g class="tick major" style="opacity: 1;" transform="translate(1.7933924328034765,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">-2,500</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(80.62382903955599,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">-2,000</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(159.45426564630853,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">-1,500</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(238.28470225306106,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">-1,000</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(317.11513885981356,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">-500</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(395.9455754665661,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">0</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(474.7760120733186,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">500</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(553.6064486800711,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">1,000</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(632.4368852868237,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">1,500</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(711.2673218935762,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">2,000</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(790.0977585003287,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">2,500</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(868.9281951070811,0)">
+              <line x2="0" y2="6"></line>
+              <text dy=".71em" style="text-anchor: middle;" x="0" y="9">3,000</text>
+            </g>
+            <path class="domain" d="M0,6V0H900V6"></path>
+          </g>
+          <g class="axis y" transform="translate(40,10)">
+            <g class="tick major" style="opacity: 1;" transform="translate(0,166)">
+              <line x2="-6" y2="0"></line>
+              <text dy=".32em" style="text-anchor: end;" x="-9" y="0">-100%</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(0,109)">
+              <line x2="-6" y2="0"></line>
+              <text dy=".32em" style="text-anchor: end;" x="-9" y="0">0%</text>
+            </g>
+            <g class="tick major" style="opacity: 1;" transform="translate(0,53)">
+              <line x2="-6" y2="0"></line>
+              <text dy=".32em" style="text-anchor: end;" x="-9" y="0">100%</text>
+            </g>
+            <path class="domain" d="M-6,0H0V210H-6"></path>
+          </g>
+        </g>
+        <defs>
+          <clipPath id="yearly-bubble-chart-clip">
+            <rect height="210" width="900" x="40" y="10"></rect>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Requires: dc.js, d3.js, crossfilter.js
+  const yearlyBubbleChart = dc.bubbleChart('#yearly-bubble-chart')
+
+  // load data from a csv file
+  d3.csv('data/ndx.csv', function (data) {
+      yearlyBubbleChart.width(990)
+        .height(250)
+        .margins({top: 10, right: 50, bottom: 30, left: 40})
+        .transitionDuration(1500)
+        .colors(['#a60000', '#ff0000', '#ff4040', '#ff7373', '#67e667', '#39e639', '#00cc00'])
+        .colorDomain([-12000, 12000])
+        .colorAccessor(function (d) {
+          return d.value.absGain
+        })
+        .keyAccessor(function (p) {
+          return p.value.absGain
+        })
+        .valueAccessor(function (p) {
+          return p.value.percentageGain
+        })
+        .radiusValueAccessor(function (p) {
+          return p.value.fluctuationPercentage
+        })
+        .maxBubbleRelativeSize(0.3)
+        .x(d3.scale.linear().domain([-2500, 2500]))
+        .y(d3.scale.linear().domain([-100, 100]))
+        .r(d3.scale.linear().domain([0, 4000]))
+        .elasticY(true)
+        .yAxisPadding(100)
+        .elasticX(true)
+        .xAxisPadding(500)
+        .renderHorizontalGridLines(true)
+        .renderVerticalGridLines(true)
+        .renderLabel(true)
+        .renderTitle(true)
+        .yAxis().tickFormat(function (v) {
+        return v + '%'
+      })
+
+      dc.renderAll()
+    }
+  )
+
+</script>
+
+</body>
+</html>
