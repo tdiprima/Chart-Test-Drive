@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Light Baroness</title>
+  <!-- Include Gridstack.js and Gridstack CSS -->
+  <script src="node_modules/gridstack/dist/gridstack-all.js"></script>
+  <link href="node_modules/gridstack/dist/gridstack.min.css" rel="stylesheet"/>
+  <style>
+    .grid-stack { background: #FAFAD2; }
+    .grid-stack-item-content { background-color: #18BC9C; }
+  </style>
+</head>
+<body>
+<!-- Create a div with the grid-stack class, and add some items. -->
+<div class="grid-stack">
+  <div class="grid-stack-item" data-gs-height="2" data-gs-width="2" data-gs-x="0" data-gs-y="0">
+    <div class="grid-stack-item-content">Item 1</div>
+  </div>
+  <div class="grid-stack-item" data-gs-height="2" data-gs-width="2" data-gs-x="2" data-gs-y="0">
+    <div class="grid-stack-item-content">Item 2</div>
+  </div>
+  <!-- Add more items here -->
+</div>
+<script>
+  // Initialize the grid
+  window.addEventListener('DOMContentLoaded', (event) => {
+    let grid = GridStack.init();
+  });
+</script>
+</body>
+</html>
