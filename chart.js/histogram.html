@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Create Histogram in Chart.js</title>
+  <!-- basic histogram of the heights of people in a class -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  <script src="chart.js"></script>
+</head>
+<body>
+<canvas height="200" id="histogram" width="400"></canvas>
+<script>
+  /**
+   * Prepare Your Data
+   * You need to convert the array of heights into a format that Chart.js can use to create a histogram.
+   * To do this, you need to decide on the range of your bins and then count how many heights fall into each bin.
+   * @param data
+   * @param binSize The width of each bin
+   * @returns {{bins: *[], counts: *[]}}
+   */
+  function createHistogramData(data, binSize) {
+    // Create bins and count the data
+    const sortedData = [...data].sort((a, b) => a - b); // Ascending order
+    const bins = [];
+    const counts = [];
+
+    for (let i = 0; i < sortedData.length; i++) {
+      const bin = Math.floor(sortedData[i] / binSize) * binSize;
+      const index = bins.indexOf(bin);
+
+      if (index === -1) {
+        bins.push(bin);
+        counts.push(1);
+      } else {
+        counts[index]++;
+      }
+    }
+
+    return {bins, counts};
+  }
+
+  // Configure and Create the Chart
+  const ctx = document.getElementById('histogram').getContext('2d');
+  const heights = [160, 162, 163, 167, 170, 171, 172, 175, 178, 180];
+  const binSize = 5; // You can adjust this value
+
+  const histogramData = createHistogramData(heights, binSize);
+
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      // The labels are generated based on the bin ranges
+      labels: histogramData.bins.map(bin => `${bin} - ${bin + binSize}`),
+      datasets: [{
+        label: 'Number of People',
+        // The data is the count of heights in each bin
+        data: histogramData.counts,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Height (cm)'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of People'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

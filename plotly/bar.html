@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Plotly Bar Chart</title>
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+<div id="plot"></div>
+<script>
+  // Generate a random integer between two given values
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  // Arrays filled with 100 random integers each, ranging from 1 to 100
+  const randomX = Array.from({length: 100}, () => getRandomInt(1, 100));
+  const randomY = Array.from({length: 100}, () => getRandomInt(1, 100));
+
+  // Defines the bar chart data and type
+  const trace = {
+    type: 'bar',
+    x: randomX,
+    y: randomY,
+  };
+
+  // An array that contains the trace
+  const data = [trace];
+
+  // Allow for additional chart configurations such as title and axis labels
+  const layout = {
+    title: 'Random Bar Chart',
+    xaxis: {
+      title: 'X-axis Title',
+    },
+    yaxis: {
+      title: 'Y-axis Title',
+    },
+  };
+
+  // Create the plot in the HTML div with the id "plot"
+  Plotly.newPlot('plot', data, layout);
+</script>
+</body>
+</html>

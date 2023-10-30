@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Scatter</title>
+  <!-- https://plotly.com/javascript/line-and-scatter/ -->
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
 <body>
 
 <div id="myDiv"></div>
 
 <script>
-  var trace1 = {
+  let trace1 = {
     x: [1, 2, 3, 4],
     y: [10, 11, 12, 13],
     mode: 'markers',
     type: 'scatter'
   };
 
-  var data = [trace1];
+  let data = [trace1];
 
-  var layout = {
+  let layout = {
     title: 'My Scatter Plot',
     xaxis: {
       title: 'X-axis label'
