@@ -12,6 +12,11 @@ This repository is a sandbox for testing and comparing various charting librarie
 - **Vega**  
 - **Vega-Lite**
 
----
-
 This is a work-in-progress repo, so expect ongoing updates!
+
+### Licensing Notice
+
+This project includes third-party open-source code, which remains subject to its original licenses.  
+Attribution is provided in the source code where applicable.  
+
+If you believe there is an issue with licensing, please **open an issue** or **contact the repository owner** for resolution.
